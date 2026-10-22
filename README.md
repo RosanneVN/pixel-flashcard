@@ -41,3 +41,12 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+
+
+
+## Notes:
+Para Pixel Flashcard, una buena estrategia sería:
+Formularios simples: manejar desde páginas o acciones del servidor.
+Interacciones de repaso: usar endpoints si necesitas actualizar datos sin recargar.
+No crear API para todo automáticamente.
