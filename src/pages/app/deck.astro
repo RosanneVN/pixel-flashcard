@@ -1,0 +1,41 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Button } from "@/components/ui/8bit/button";
+import DeckCard from "@/components/decks/DeckCard";
+import UserAvatar from "@/components/decks/UserAvatar";
+import { mockDecks } from "@/types/types";
+---
+
+<Layout title="Decks - Pixel Flashcard">
+  <main class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8">
+    <header class="flex justify-start">
+      <UserAvatar
+        src=""
+        alt="User avatar"
+        fallback="PF"
+        client:load
+      />
+    </header>
+
+    <section class="flex justify-between gap-4">
+      <Button type="button">study all</Button>
+      <Button type="button" variant="secondary">create new deck</Button>
+    </section>
+
+    <section aria-label="Deck list">
+      {
+        mockDecks.length === 0 ? (
+          <p class="text-sm text-muted-foreground">No decks yet</p>
+        ) : (
+          <ul class="grid grid-cols-2 gap-10">
+            {mockDecks.map((deck) => (
+              <li>
+                <DeckCard deck={deck} client:load />
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </section>
+  </main>
+</Layout>
