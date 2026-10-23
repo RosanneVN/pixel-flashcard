@@ -4,17 +4,17 @@ import {
   AvatarImage,
 } from "@/components/ui/8bit/avatar";
 
-interface UserAvatarProps {
+interface DashboardAvatarProps {
   src?: string;
   alt?: string;
   fallback?: string;
 }
 
-export default function UserAvatar({
+export default function DashboardAvatar({
   src,
   alt = "User avatar",
   fallback = "PF",
-}: UserAvatarProps) {
+}: DashboardAvatarProps) {
   return (
     <Avatar>
       <AvatarImage src={src} alt={alt} />
