@@ -1,0 +1,52 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+} from "@/components/ui/8bit/card";
+import { Input } from "@/components/ui/8bit/input";
+import { Button } from "@/components/ui/8bit/button";
+---
+
+<Layout title="Login - Pixel Flashcard">
+  <main class="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-8">
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <img
+          src="https://picsum.photos/seed/pixel-login/320/200"
+          width="320"
+          height="200"
+          alt="Pixel-art style illustration welcoming you to Pixel Flashcard"
+          loading="eager"
+          class="h-auto w-full"
+        />
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <form class="flex flex-col gap-4">
+          <label for="username" class="text-sm text-foreground">
+            User name
+          </label>
+          <Input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="type your user name"
+            autocomplete="username"
+          />
+          <label for="password" class="text-sm text-foreground">
+            Password
+          </label>
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="type your password"
+            autocomplete="current-password"
+          />
+          <Button type="button">Login</Button>
+        </form>
+      </CardContent>
+    </Card>
+  </main>
+</Layout>
