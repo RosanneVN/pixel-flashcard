@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Card, CardContent } from "@/components/ui/8bit/card";
+import { Badge } from "@/components/ui/8bit/badge";
+import { Button } from "@/components/ui/8bit/button";
+import {
+  CalendarClock,
+  CalendarDays,
+  CalendarRange,
+  Clock,
+  Hourglass,
+} from "lucide-react";
+import { mockReviewBoxes, type ReviewBoxIcon } from "@/mocks/review-boxes";
+
+const boxIconMap = {
+  clock: Clock,
+  "calendar-days": CalendarDays,
+  "calendar-range": CalendarRange,
+  "calendar-clock": CalendarClock,
+  hourglass: Hourglass,
+} as const;
+
+function getBoxIcon(icon: ReviewBoxIcon) {
+  return boxIconMap[icon];
+}
+---
+
+<Layout title="Boxes - Pixel Flashcard">
+  <main
+    class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
+  >
+    <header>
+      <h1 class="text-2xl font-bold flex justify-center">Boxes</h1>
+    </header>
+    <section>
+      <Button type="button">review 50 cards</Button>
+    </section>
+    <section aria-label="Review boxes">
+      {
+        mockReviewBoxes.length === 0 ? (
+          <p class="text-sm text-muted-foreground">No boxes yet</p>
+        ) : (
+          <ul class="grid grid-cols-3 gap-6">
+            {mockReviewBoxes.map((box) => {
+              const Icon = getBoxIcon(box.icon);
+              return (
+                <li>
+                  <Card className="h-full">
+                    <CardContent className="flex flex-col items-center gap-3 py-6">
+                      <span
+                        aria-hidden="true"
+                        class={`flex size-12 items-center justify-center ${box.color}`}
+                      >
+                        <Icon className="size-6 text-white" />
+                      </span>
+                      <Badge className={box.color}>{box.intervalLabel}</Badge>
+                      <p class="text-sm text-muted-foreground">
+                        {box.totalCards} cards
+                      </p>
+                    </CardContent>
+                  </Card>
+                </li>
+              );
+            })}
+          </ul>
+        )
+      }
+    </section>
+  </main>
+</Layout>
