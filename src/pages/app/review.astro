@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ReviewSession from "@/components/flashcards/ReviewSession";
+import { mockFlashcards } from "@/mocks/flashcards";
+---
+
+<Layout title="Review - Pixel Flashcard">
+  <main
+    class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
+  >
+    <header>
+      <h1 class="text-2xl font-bold flex justify-center">Review</h1>
+    </header>
+    <section aria-label="Review session">
+      <ReviewSession cards={mockFlashcards} client:load />
+    </section>
+  </main>
+</Layout>

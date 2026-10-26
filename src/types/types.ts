@@ -15,6 +15,17 @@ export interface Deck {
 
 export type DeckPopoverAction = "edit" | "delete";
 
+export type FlashcardType = "production" | "recognition";
+
+export interface Flashcard {
+  id: string;
+  type: FlashcardType;
+  question: string;
+  answer: string;
+  example: string;
+  note: string | null;
+}
+
 export const mockDecks: Deck[] = [
   {
     id: "deck-japanese-basics",
