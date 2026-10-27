@@ -34,9 +34,19 @@ The system SHALL render a header containing an `h1` with text `deck: <deck_name>
 - **WHEN** a user views the detail header
 - **THEN** a `study all` button and a `create new card` button appear in the same row (side by side)
 
+#### Scenario: Create new card opens chooser modal
+
+- **WHEN** a user activates `create new card` on the deck detail page
+- **THEN** the `ModalCard` chooser modal opens and no navigation, mutation, or network request occurs in this change
+
 #### Scenario: Action buttons are UI-only placeholders
 
 - **WHEN** a user activates `study all` or `create new card`
+- **THEN** no navigation, mutation, or network request occurs in this change
+
+#### Scenario: Study all remains a UI-only placeholder
+
+- **WHEN** a user activates `study all`
 - **THEN** no navigation, mutation, or network request occurs in this change
 
 ### Requirement: Card list stacks vertically from mock data
