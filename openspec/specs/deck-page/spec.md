@@ -55,12 +55,17 @@ The system SHALL define shared deck types in `src/types/types.ts` covering deck 
 
 ### Requirement: UI-only scope
 
-The system SHALL NOT perform data fetching, persistence, routing, or auth from the Deck page or `DeckCard` in this change; all content comes from local mock data.
+The system SHALL source all Deck page and `DeckCard` content from local mock data with no data fetching, persistence, or auth, but SHALL allow client-side navigation when a deck or box card is activated.
 
 #### Scenario: No backend side effects
 
 - **WHEN** a user views the Deck page or opens any DeckCard popover
 - **THEN** no network request is made and no stored data changes
+
+#### Scenario: Card activation navigates
+
+- **WHEN** a user activates a deck card body or a review-box card (excluding popover/menu controls)
+- **THEN** the system performs only a client-side route change with no network request and no stored data change
 
 ### Requirement: Boxes page layout
 
@@ -126,3 +131,35 @@ The system SHALL display a button labeled `review 50 cards` below the box grid t
 
 - **WHEN** a user activates the `review 50 cards` button
 - **THEN** no navigation occurs, no network request is made, and no stored data changes
+
+### Requirement: Deck card navigates to Boxes page
+
+The system SHALL navigate to the Deck Boxes page at `/app/deck` when the user activates a `DeckCard` body on the dashboard, excluding activation of the 3-dots popover trigger and popover items.
+
+#### Scenario: DeckCard body click navigates to deck page
+
+- **WHEN** a user activates a `DeckCard` body (icon, name, counts, progress, or card background) without activating the 3-dots menu
+- **THEN** the system navigates to `/app/deck`
+
+#### Scenario: Popover activation does not navigate
+
+- **WHEN** a user activates the DeckCard 3-dots button or any popover item
+- **THEN** the system does not navigate and only the popover behavior occurs
+
+### Requirement: Box card navigates to deck detail
+
+The system SHALL navigate to `/app/deck/[id]` for the selected review box when the user activates a box card on the Deck Boxes page.
+
+#### Scenario: Box card click navigates to detail
+
+- **WHEN** a user activates a review-box card on `/app/deck`
+- **THEN** the system navigates to `/app/deck/[id]` matching that box's deck id
+
+### Requirement: Deck page top navigation header
+
+The system SHALL render the shared back navigation header at the top of the Deck Boxes page.
+
+#### Scenario: Deck page shows back header
+
+- **WHEN** a user visits `/app/deck`
+- **THEN** a top header with a `back` arrow button is visible above the page content

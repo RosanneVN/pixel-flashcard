@@ -32,12 +32,14 @@ function getDeckIcon(icon: DeckIcon) {
 
 interface DeckCardProps {
   deck: Deck;
+  href?: string;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
 }
 
 export default function DeckCard({
   deck,
+  href,
   onEdit,
   onDelete,
 }: DeckCardProps) {
@@ -47,8 +49,38 @@ export default function DeckCard({
   const progress = total > 0 ? studied / total : 0;
   const percent = Math.round(progress * 100);
 
+  const navigate = () => {
+    if (href) {
+      window.location.assign(href);
+    }
+  };
+
+  const handleCardClick = (event: React.MouseEvent) => {
+    if (!href) return;
+    const target = event.target as HTMLElement | null;
+    if (target?.closest("[data-deck-menu],[data-radix-popper]")) return;
+    navigate();
+  };
+
+  const handleCardKeyDown = (event: React.KeyboardEvent) => {
+    if (!href) return;
+    if (event.key === "Enter" || event.key === " ") {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("[data-deck-menu],[data-radix-popper]")) return;
+      event.preventDefault();
+      navigate();
+    }
+  };
+
   return (
-    <Card className="w-full">
+    <Card
+      className={href ? "w-full cursor-pointer" : "w-full"}
+      role={href ? "link" : undefined}
+      tabIndex={href ? 0 : undefined}
+      aria-label={href ? `Open deck ${deck.name}` : undefined}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKeyDown}
+    >
       <CardContent className="flex items-center gap-4">
         <span
           aria-hidden="true"
@@ -67,6 +99,11 @@ export default function DeckCard({
             </div>
 
             <Popover>
+              <div
+                data-deck-menu
+                onClick={(event) => event.stopPropagation()}
+                onKeyDown={(event) => event.stopPropagation()}
+              >
               <PopoverTrigger
                 aria-label={`Deck options for ${deck.name}`}
                 render={
@@ -97,6 +134,7 @@ export default function DeckCard({
                   delete
                 </button>
               </PopoverContent>
+              </div>
             </Popover>
           </div>
 

@@ -41,13 +41,13 @@ The system SHALL render a header containing an `h1` with text `deck: <deck_name>
 
 #### Scenario: Action buttons are UI-only placeholders
 
-- **WHEN** a user activates `study all` or `create new card`
+- **WHEN** a user activates `create new card`
 - **THEN** no navigation, mutation, or network request occurs in this change
 
-#### Scenario: Study all remains a UI-only placeholder
+#### Scenario: Study all navigates to review
 
-- **WHEN** a user activates `study all`
-- **THEN** no navigation, mutation, or network request occurs in this change
+- **WHEN** a user activates `study all` on `/app/deck/[id]`
+- **THEN** the system navigates to `/app/review`
 
 ### Requirement: Card list stacks vertically from mock data
 
@@ -93,7 +93,7 @@ The system SHALL open a popover from the `FlashcardItem` kebab button showing `e
 
 ### Requirement: Types and UI-only scope
 
-The system SHALL reuse the `Deck` and `Flashcard` types from `src/types/types.ts` and `mockFlashcards` from `src/mocks/flashcards.ts`, and SHALL NOT perform data fetching, persistence, routing side effects, or auth from the detail page or `FlashcardItem` in this change.
+The system SHALL reuse the `Deck` and `Flashcard` types from `src/types/types.ts` and `mockFlashcards` from `src/mocks/flashcards.ts`, and SHALL NOT perform data fetching, persistence, or auth from the detail page or `FlashcardItem` in this change; client-side navigation from `study all` and the shared back header is allowed.
 
 #### Scenario: Types type-check
 
@@ -104,3 +104,12 @@ The system SHALL reuse the `Deck` and `Flashcard` types from `src/types/types.ts
 
 - **WHEN** a user views the detail page or opens any `FlashcardItem` popover
 - **THEN** no network request is made and no stored data changes
+
+### Requirement: Deck detail top navigation header
+
+The system SHALL render the shared back navigation header at the top of the deck detail page.
+
+#### Scenario: Detail page shows back header
+
+- **WHEN** a user visits `/app/deck/[id]` for a known deck id
+- **THEN** a top header with a `back` arrow button is visible above the detail content

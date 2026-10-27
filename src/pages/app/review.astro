@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import FlowNav from "@/components/navigation/FlowNav.astro";
 import ReviewSession from "@/components/flashcards/ReviewSession";
 import { mockFlashcards } from "@/mocks/flashcards";
 ---
@@ -8,6 +9,7 @@ import { mockFlashcards } from "@/mocks/flashcards";
   <main
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
   >
+    <FlowNav backHref="/app/deck" />
     <header>
       <h1 class="text-2xl font-bold flex justify-center">Review</h1>
     </header>

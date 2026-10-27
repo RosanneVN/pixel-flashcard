@@ -10,7 +10,7 @@ export default function DeckDetailActions() {
   return (
     <>
       <section className="flex gap-4" aria-label="Deck actions">
-        <Button type="button">study all</Button>
+        <Button type="button" onClick={() => window.location.assign("/app/review")}>study all</Button>
         <Button
           type="button"
           variant="secondary"

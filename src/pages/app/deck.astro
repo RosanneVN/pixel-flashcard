@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import FlowNav from "@/components/navigation/FlowNav.astro";
 import { Card, CardContent } from "@/components/ui/8bit/card";
 import { Badge } from "@/components/ui/8bit/badge";
 import { Button } from "@/components/ui/8bit/button";
@@ -29,6 +30,7 @@ function getBoxIcon(icon: ReviewBoxIcon) {
   <main
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
   >
+    <FlowNav backHref="/app/dashboard" />
     <header>
       <h1 class="text-2xl font-bold flex justify-center">Boxes</h1>
     </header>
@@ -45,20 +47,26 @@ function getBoxIcon(icon: ReviewBoxIcon) {
               const Icon = getBoxIcon(box.icon);
               return (
                 <li>
-                  <Card className="h-full">
-                    <CardContent className="flex flex-col items-center gap-3 py-6">
-                      <span
-                        aria-hidden="true"
-                        class={`flex size-12 items-center justify-center ${box.color}`}
-                      >
-                        <Icon className="size-6 text-white" />
-                      </span>
-                      <Badge className={box.color}>{box.intervalLabel}</Badge>
-                      <p class="text-sm text-muted-foreground">
-                        {box.totalCards} cards
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <a
+                    href="/app/deck/deck-japanese-basics"
+                    aria-label={`Open ${box.intervalLabel} box`}
+                    class="block h-full"
+                  >
+                    <Card className="h-full">
+                      <CardContent className="flex flex-col items-center gap-3 py-6">
+                        <span
+                          aria-hidden="true"
+                          class={`flex size-12 items-center justify-center ${box.color}`}
+                        >
+                          <Icon className="size-6 text-white" />
+                        </span>
+                        <Badge className={box.color}>{box.intervalLabel}</Badge>
+                        <p class="text-sm text-muted-foreground">
+                          {box.totalCards} cards
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </a>
                 </li>
               );
             })}

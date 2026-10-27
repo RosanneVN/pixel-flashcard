@@ -35,7 +35,12 @@ The system SHALL provide a password input on the login page with the placeholder
 
 ### Requirement: Login button
 
-The system SHALL provide a `Login` button on the login page.
+The system SHALL provide a `Login` button on the login page that navigates to `/app/dashboard` when activated.
+
+#### Scenario: Login button navigates to dashboard
+
+- **WHEN** a user activates the `Login` button on `/login`
+- **THEN** the system navigates to `/app/dashboard`
 
 #### Scenario: Login button present
 
@@ -62,9 +67,9 @@ The system SHALL render the login form (card container, inputs, button) with 8-b
 
 ### Requirement: UI-only behavior
 
-The system SHALL NOT submit credentials or contact any backend from the login page in this change; the form is visual only.
+The system SHALL NOT submit credentials, create a session, or contact any backend from the login page in this change; the form is visual only except for client-side navigation to `/app/dashboard`.
 
 #### Scenario: No submission side effects
 
 - **WHEN** a user activates the `Login` button
-- **THEN** no network request is made and no session is created
+- **THEN** no network request is made, no session is created, and the user lands on `/app/dashboard`

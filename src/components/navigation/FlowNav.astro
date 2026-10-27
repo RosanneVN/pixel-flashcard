@@ -1,0 +1,40 @@
+---
+import { ArrowLeft } from "lucide-react";
+
+interface Props {
+  backHref?: string;
+}
+
+const { backHref } = Astro.props;
+---
+
+<nav aria-label="Flow navigation" class="flex items-center justify-start">
+  {
+    backHref ? (
+      <a
+        href={backHref}
+        aria-label="back"
+        data-flow-nav-link
+        class="retro inline-flex items-center gap-2 border-y-4 border-foreground bg-card px-3 py-2 text-xs text-card-foreground"
+      >
+        <ArrowLeft className="size-4" aria-hidden="true" />
+        back
+      </a>
+    ) : (
+      <span aria-hidden="true" />
+    )
+  }
+</nav>
+
+<script>
+  document
+    .querySelectorAll('nav[aria-label="Flow navigation"] a[data-flow-nav-link]')
+    .forEach((link) => {
+      link.addEventListener("keydown", (event) => {
+        if (event.key === " ") {
+          event.preventDefault();
+          event.currentTarget.click();
+        }
+      });
+    });
+</script>
