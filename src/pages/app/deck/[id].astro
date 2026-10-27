@@ -1,0 +1,46 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Button } from "@/components/ui/8bit/button";
+import FlashcardItem from "@/components/flashcards/FlashcardItem";
+import { mockDecks } from "@/mocks/decks";
+import { mockFlashcards } from "@/mocks/flashcards";
+
+const { id } = Astro.params;
+const deck = mockDecks.find((d) => d.id === id);
+---
+
+<Layout title={deck ? `deck: ${deck.name} - Pixel Flashcard` : "Deck not found - Pixel Flashcard"}>
+  <main
+    class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
+  >
+    {deck ? (
+      <>
+        <header class="flex flex-col gap-4">
+          <h1 class="text-2xl font-bold flex justify-center">deck: {deck.name}</h1>
+          <section class="flex gap-4" aria-label="Deck actions">
+            <Button type="button">study all</Button>
+            <Button type="button" variant="secondary">create new card</Button>
+          </section>
+        </header>
+        <section aria-label="Card list">
+          {mockFlashcards.length === 0 ? (
+            <p class="text-sm text-muted-foreground">No cards yet</p>
+          ) : (
+            <ul class="flex flex-col gap-4">
+              {mockFlashcards.map((card) => (
+                <li>
+                  <FlashcardItem card={card} client:load />
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      </>
+    ) : (
+      <header class="flex flex-col gap-4">
+        <h1 class="text-2xl font-bold flex justify-center">deck not found</h1>
+        <p class="text-sm text-muted-foreground">No deck found for id &quot;{id}&quot;</p>
+      </header>
+    )}
+  </main>
+</Layout>
