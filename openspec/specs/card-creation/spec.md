@@ -46,7 +46,12 @@ The system SHALL provide a `CreateNewCard` modal form with a header titled `crea
 
 ### Requirement: Modal trigger chain
 
-The system SHALL open `CreateNewCard` when the user activates `type your own cards` inside `ModalCard`, and SHALL close the topmost modal when `cancel` is activated.
+The system SHALL open `CreateNewCard` when the user activates `type your own cards` inside `ModalCard`, and SHALL close the topmost modal when `cancel` is activated. The `ModalCard` chooser is entered from the `create new card` button on the Deck Boxes page (`src/pages/app/deck.astro`).
+
+#### Scenario: Boxes entry opens chooser
+
+- **WHEN** a user activates `create new card` on `/app/deck`
+- **THEN** the `ModalCard` chooser modal opens
 
 #### Scenario: Typing option opens creation form
 

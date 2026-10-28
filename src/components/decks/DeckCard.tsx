@@ -93,7 +93,7 @@ export default function DeckCard({
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
               <p className="truncate font-medium">{deck.name}</p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-[10px] text-muted-foreground">
                 {total} {total === 1 ? "card" : "cards"}
               </p>
             </div>
@@ -151,9 +151,7 @@ export default function DeckCard({
               style={{ width: `${percent}%` }}
             />
           </div>
-          <p className="text-xs text-muted-foreground">
-            {studied} of {total} studied ({percent}%)
-          </p>
+         
         </div>
       </CardContent>
     </Card>

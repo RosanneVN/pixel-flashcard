@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import FlowNav from "@/components/navigation/FlowNav.astro";
-import { Button } from "@/components/ui/8bit/button";
+import DashboardActions from "@/components/dashboard/DashboardActions";
 import DeckCard from "@/components/decks/DeckCard";
 import { mockDecks } from "@/mocks/decks";
 import DashboardAvatar from "@/components/dashboard/DashboardAvatar";
@@ -11,16 +11,9 @@ import DashboardAvatar from "@/components/dashboard/DashboardAvatar";
   <main
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
   >
-    <header class="flex justify-start">
-      <DashboardAvatar fallback="PF" client:load />
-    </header>
-
     <FlowNav backHref="/login" />
 
-    <section class="flex justify-between gap-4">
-      <Button type="button">study all</Button>
-      <Button type="button" variant="secondary">create new deck</Button>
-    </section>
+    <DashboardActions client:load />
 
     <section aria-label="Deck list">
       {

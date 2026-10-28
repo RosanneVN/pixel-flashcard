@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import FlowNav from "@/components/navigation/FlowNav.astro";
 import { Card, CardContent } from "@/components/ui/8bit/card";
 import { Badge } from "@/components/ui/8bit/badge";
-import { Button } from "@/components/ui/8bit/button";
+import BoxesActions from "@/components/flashcards/BoxesActions";
 import {
   CalendarClock,
   CalendarDays,
@@ -34,9 +34,7 @@ function getBoxIcon(icon: ReviewBoxIcon) {
     <header>
       <h1 class="text-2xl font-bold flex justify-center">Boxes</h1>
     </header>
-    <section>
-      <Button type="button">review 50 cards</Button>
-    </section>
+    <BoxesActions client:load />
     <section aria-label="Review boxes">
       {
         mockReviewBoxes.length === 0 ? (

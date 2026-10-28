@@ -18,7 +18,7 @@ const deck = mockDecks.find((d) => d.id === id);
     {deck ? (
       <>
         <header class="flex flex-col gap-4">
-          <h1 class="text-2xl font-bold flex justify-center">deck: {deck.name}</h1>
+          <h1 class="text-2xl font-bold flex justify-center">Deck: {deck.name}</h1>
           <DeckDetailActions client:load />
         </header>
         <section aria-label="Card list">

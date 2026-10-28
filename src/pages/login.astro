@@ -22,24 +22,28 @@ import { Button } from "@/components/ui/8bit/button";
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <form class="flex flex-col gap-4">
-          <label for="username" class="text-sm text-foreground">
-            User name
-          </label>
-          <Input
-            id="username"
-            name="username"
-            type="text"
-            placeholder="type your user name"
-          />
-          <label for="password" class="text-sm text-foreground">
-            Password
-          </label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="type your password"
-          />
+          <div>
+            <label for="username" class="text-[10px] text-foreground">
+              User name
+            </label>
+            <Input
+              id="username"
+              name="username"
+              type="text"
+              placeholder="type your user name"
+            />
+          </div>
+          <div>
+            <label for="password" class="text-[10px] text-foreground">
+              Password
+            </label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="type your password"
+            />
+          </div>
           <Button type="button" id="login-button">Login</Button>
         </form>
       </CardContent>

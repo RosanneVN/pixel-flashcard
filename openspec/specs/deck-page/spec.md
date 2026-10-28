@@ -69,12 +69,12 @@ The system SHALL source all Deck page and `DeckCard` content from local mock dat
 
 ### Requirement: Boxes page layout
 
-The system SHALL render the Deck page (`src/pages/app/deck.astro`) as a title header with text `Boxes`, followed by a 2-column grid of 5 review boxes, followed by a button labeled `review 50 cards` below the grid.
+The system SHALL render the Deck page (`src/pages/app/deck.astro`) as a title header with text `Boxes`, followed by an action row with `review today cards` and `create new card` buttons, followed by the review-box grid.
 
-#### Scenario: Title, grid, and button render in order
+#### Scenario: Title, actions, and grid render in order
 
 - **WHEN** a user visits the Deck page
-- **THEN** a `Boxes` title appears first, followed by the box grid, followed by the `review 50 cards` button top-to-bottom
+- **THEN** a `Boxes` title appears first, followed by the action row, followed by the box grid top-to-bottom
 
 #### Scenario: Grid uses two columns
 
@@ -125,12 +125,26 @@ The system SHALL define shared review-box types in `src/mocks/` covering box ide
 
 ### Requirement: Review button is UI-only placeholder
 
-The system SHALL display a button labeled `review 50 cards` below the box grid that performs no navigation, mutation, or network request in this change.
+The system SHALL navigate to `/app/review` when the user activates the `review today cards` button on the Deck page, with no data fetching, mutation, or other network request.
 
-#### Scenario: Review button has no side effects
+#### Scenario: Review button navigates to review
 
-- **WHEN** a user activates the `review 50 cards` button
-- **THEN** no navigation occurs, no network request is made, and no stored data changes
+- **WHEN** a user activates the `review today cards` button on `/app/deck`
+- **THEN** the system navigates to `/app/review` with no network request and no stored data change
+
+### Requirement: Create new card entry on Boxes page
+
+The system SHALL open the `ModalCard` chooser modal when the user activates the `create new card` button on the Deck page, and the chooser SHALL open the `CreateNewCard` form when `type your own cards` is activated.
+
+#### Scenario: Boxes create new card opens chooser
+
+- **WHEN** a user activates `create new card` on `/app/deck`
+- **THEN** the `ModalCard` chooser modal opens and no navigation, mutation, or network request occurs
+
+#### Scenario: Chooser opens card form
+
+- **WHEN** a user activates `type your own cards` in the chooser opened from the Boxes page
+- **THEN** the `CreateNewCard` modal appears with title `create a new flashcard`
 
 ### Requirement: Deck card navigates to Boxes page
 
