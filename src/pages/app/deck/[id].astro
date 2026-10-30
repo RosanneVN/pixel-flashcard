@@ -1,10 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import FlowNav from "@/components/navigation/FlowNav.astro";
-import FlashcardItem from "@/components/flashcards/FlashcardItem";
+import DeckDetailCards from "@/components/flashcards/DeckDetailCards";
 import DeckDetailActions from "@/components/flashcards/DeckDetailActions";
 import { mockDecks } from "@/mocks/decks";
-import { mockFlashcards } from "@/mocks/flashcards";
 
 const { id } = Astro.params;
 const deck = mockDecks.find((d) => d.id === id);
@@ -22,17 +21,7 @@ const deck = mockDecks.find((d) => d.id === id);
           <DeckDetailActions client:load />
         </header>
         <section aria-label="Card list">
-          {mockFlashcards.length === 0 ? (
-            <p class="text-sm text-muted-foreground">No cards yet</p>
-          ) : (
-            <ul class="flex flex-col gap-4">
-              {mockFlashcards.map((card) => (
-                <li>
-                  <FlashcardItem card={card} client:load />
-                </li>
-              ))}
-            </ul>
-          )}
+          <DeckDetailCards client:load />
         </section>
       </>
     ) : (
