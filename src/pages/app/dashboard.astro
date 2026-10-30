@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import FlowNav from "@/components/navigation/FlowNav.astro";
 import DashboardActions from "@/components/dashboard/DashboardActions";
-import DeckCard from "@/components/decks/DeckCard";
+import DashboardDeckList from "@/components/dashboard/DashboardDeckList";
 import { mockDecks } from "@/mocks/decks";
 import DashboardAvatar from "@/components/dashboard/DashboardAvatar";
 ---
@@ -15,20 +15,6 @@ import DashboardAvatar from "@/components/dashboard/DashboardAvatar";
 
     <DashboardActions client:load />
 
-    <section aria-label="Deck list">
-      {
-        mockDecks.length === 0 ? (
-          <p class="text-sm text-muted-foreground">No decks yet</p>
-        ) : (
-          <ul class="flex flex-col gap-4">
-            {mockDecks.map((deck) => (
-              <li>
-                <DeckCard deck={deck} href="/app/deck" client:load />
-              </li>
-            ))}
-          </ul>
-        )
-      }
-    </section>
+    <DashboardDeckList decks={mockDecks} client:load />
   </main>
 </Layout>

@@ -31,9 +31,7 @@ function getBoxIcon(icon: ReviewBoxIcon) {
     class="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-8"
   >
     <FlowNav backHref="/app/dashboard" />
-    <header>
-      <h1 class="text-2xl font-bold flex justify-center">Boxes</h1>
-    </header>
+    
     <BoxesActions client:load />
     <section aria-label="Review boxes">
       {
