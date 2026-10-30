@@ -20,7 +20,7 @@ import DashboardAvatar from "@/components/dashboard/DashboardAvatar";
         mockDecks.length === 0 ? (
           <p class="text-sm text-muted-foreground">No decks yet</p>
         ) : (
-          <ul class="grid grid-cols-2 gap-10">
+          <ul class="flex flex-col gap-4">
             {mockDecks.map((deck) => (
               <li>
                 <DeckCard deck={deck} href="/app/deck" client:load />

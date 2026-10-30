@@ -3,7 +3,20 @@ export type DeckIcon =
   | "calculator"
   | "flask"
   | "globe"
-  | "code";
+  | "code"
+  | "history"
+  | "art"
+  | "music"
+  | "biology"
+  | "physics"
+  | "literature"
+  | "sports"
+  | "tech"
+  | "design"
+  | "medicine"
+  | "food"
+  | "travel"
+  | "chemistry";
 
 export interface Deck {
   id: string;

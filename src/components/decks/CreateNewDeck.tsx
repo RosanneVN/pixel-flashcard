@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,6 +8,9 @@ import {
 } from "@/components/ui/8bit/dialog";
 import { Input } from "@/components/ui/8bit/input";
 import { Button } from "@/components/ui/8bit/button";
+import type { DeckIcon } from "@/types/types";
+import DeckIconSelector from "./DeckIconSelector";
+import { DEFAULT_DECK_ICON } from "./deck-icons";
 
 interface CreateNewDeckProps {
   open: boolean;
@@ -17,8 +21,17 @@ export default function CreateNewDeck({
   open,
   onOpenChange,
 }: CreateNewDeckProps) {
+  const [icon, setIcon] = useState<DeckIcon>(DEFAULT_DECK_ICON);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (!nextOpen) {
+      setIcon(DEFAULT_DECK_ICON);
+    }
+    onOpenChange(nextOpen);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent aria-label="Create a new deck">
         <DialogHeader>
           <DialogTitle>Create a new deck</DialogTitle>
@@ -27,6 +40,7 @@ export default function CreateNewDeck({
           className="flex flex-col gap-4"
           onSubmit={(e) => {
             e.preventDefault();
+            setIcon(DEFAULT_DECK_ICON);
             onOpenChange(false);
           }}
         >
@@ -41,11 +55,12 @@ export default function CreateNewDeck({
               required
             />
           </div>
+          <DeckIconSelector value={icon} onChange={setIcon} />
           <DialogFooter>
             <Button
               type="button"
               variant="secondary"
-              onClick={() => onOpenChange(false)}
+              onClick={() => handleOpenChange(false)}
             >
               cancel
             </Button>

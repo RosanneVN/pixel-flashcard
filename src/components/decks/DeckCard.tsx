@@ -1,13 +1,4 @@
-import {
-  Calculator,
-  Code,
-  FlaskConical,
-  Globe,
-  Languages,
-  MoreVertical,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/8bit/card";
 import { Button } from "@/components/ui/8bit/button";
 import {
@@ -17,17 +8,13 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import type { Deck, DeckIcon } from "@/types/types";
+import { DECK_ICON_MAP } from "./deck-icons";
 
-const deckIconMap = {
-  languages: Languages,
-  calculator: Calculator,
-  flask: FlaskConical,
-  globe: Globe,
-  code: Code,
-} as const;
+const deckIconMap: Record<DeckIcon, typeof DECK_ICON_MAP.languages> =
+  DECK_ICON_MAP;
 
 function getDeckIcon(icon: DeckIcon) {
-  return deckIconMap[icon] ?? Languages;
+  return deckIconMap[icon] ?? DECK_ICON_MAP.languages;
 }
 
 interface DeckCardProps {
